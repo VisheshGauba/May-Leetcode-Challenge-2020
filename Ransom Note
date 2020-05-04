@@ -1,0 +1,17 @@
+//Memory Usage: 8.7 MB, less than 100.00% of C++ online submissions for Ransom Note.
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        map<char, int> ransFreq, magFreq;
+        
+        for(auto ch : magazine) magFreq[ch]++;
+        
+        for(auto ch : ransomNote){ 
+            ransFreq[ch]++;
+            if(ransFreq[ch] > magFreq[ch]) return false; 
+        }
+        
+        return true;
+    }
+};
