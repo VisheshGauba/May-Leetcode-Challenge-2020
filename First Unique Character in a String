@@ -1,0 +1,47 @@
+class Solution {
+public:
+    //BRUTE FORCE
+//    int firstUniqChar(string s)
+// {
+//     for (int i = 0; i < s.length() - 1; i++)
+//     {
+//         bool isfound = false;
+//         for (int j = i + 1; j < s.length() - 1; j++)
+//         {
+//             if (s[i] == s[j])
+//             {
+//                 isfound = true;
+//                 break;
+//             }
+//         }
+//         if (isfound == false)
+//             return i;
+//     }
+//     return -1;
+// }
+//USING HASHMAP
+    int firstUniqChar(string s){
+        unordered_map<char,int> ourmap;
+        
+        for(int x=0;x<s.size();x++){
+            ourmap[s[x]]++;
+        }
+        // int res=-1;
+        // int count=0;
+        // for(auto i:ourmap){
+        //      if (count < i.second)
+        // {
+        //     res = i.first;
+        //     count = i.second;
+        // }
+        //     // cout << i.first << ":" << i.second << endl;
+        // }
+         
+        for(int i=0;i<s.size();i++){
+            if(ourmap[s[i]]==1){
+                return i;
+            }
+        }
+        return -1;
+    }
+};
