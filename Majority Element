@@ -1,0 +1,31 @@
+class Solution {
+public:
+//     int majorityElement(vector<int>& nums) {
+        
+//         int count = 0;
+//         int candidate = 0;
+
+//         for (int num : nums) {
+//             if (count == 0) {
+//                 candidate = num;
+//             }
+//             count += (num == candidate) ? 1 : -1;
+//         }
+
+//         return candidate;
+//     }
+    int majorityElement(vector<int>& nums){
+        int n=nums.size();
+        int count=0;
+        unordered_map<int,int> ourmap;
+        for(int i=0;i<n;i++){
+            ourmap[nums[i]]++;
+        }
+        for(auto x:ourmap){
+            if(x.second>n/2){
+                return x.first;
+            }
+        }
+        return -1;
+    }
+};
