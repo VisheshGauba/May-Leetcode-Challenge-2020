@@ -1,0 +1,76 @@
+class Trie {
+public:
+
+class Node
+{
+public:
+    int wordend = 0;
+    vector<Node *> child;
+    // string word = "";
+
+    Node()
+    {
+        this->child.assign(26, nullptr);
+        this->wordend = 0;
+        // this->word = "";
+    }
+};
+      Node* root = nullptr;
+    Trie(){
+        root=new Node();
+    }
+  
+    void insert(string word)
+    {
+        Node* curr = root;
+        int n = word.length();
+        for (int i = 0; i < n; i++)
+        {
+        char ch = word[i];
+            if (curr->child[ch - 'a'] == nullptr){
+                
+            curr->child[ch - 'a'] = new Node();
+        }
+
+            curr = curr->child[ch - 'a'];
+        }
+        curr->wordend++;
+    }
+    bool search(string word)
+    {
+        Node* curr = root;
+        int n = word.length();
+        for (int i = 0; i < n; i++)
+        {
+            int idx = word[i] - 'a';
+            curr = curr->child[idx];
+            if (curr == nullptr)
+            {
+                return false;
+            }
+        }
+        return curr->wordend > 0;
+    }
+    bool startsWith(string prefix)
+    {
+         Node* curr = root;
+        int n = prefix.length();
+        for (int i = 0; i < n; i++)
+        {
+            int idx = prefix[i] - 'a';
+            curr = curr->child[idx];
+            if (curr == nullptr)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
